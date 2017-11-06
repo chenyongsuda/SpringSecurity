@@ -34,12 +34,18 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         http.csrf().disable();
             http.authorizeRequests()//配置安全策略
                     .antMatchers("/open/**").permitAll()//定义/请求不需要验证
+                    .antMatchers("/api/admin").hasRole("ADMIN")
+                    .antMatchers("/api/user").hasRole("USER")
                     .anyRequest().authenticated()//其余的所有请求都需要验证
                     .and()
                     .logout()
                     .permitAll()//定义logout不需要验证
                     .and()
-                    .formLogin().loginPage("/login").permitAll();//使用form表单登录
+                    .formLogin()
+                    .loginPage("/login")
+//                    .successForwardUrl("/successLogin")
+//                    .failureForwardUrl("/errorLogin")
+                    .permitAll();//使用form表单登录
     }
 
 }

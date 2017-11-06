@@ -24,4 +24,14 @@ public class LoginController {
     public String login() {
         return "login";
     }
+
+    @RequestMapping("/successLogin")
+    public String sforward() {
+        return "successforward";
+    }
+
+    @RequestMapping("/errorLogin")
+    public String eforward() {
+        return "errorforward";
+    }
 }
